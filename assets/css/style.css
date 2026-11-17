@@ -141,3 +141,13 @@ html.loading .page,html.loading .page *{animation-play-state:paused!important}
 @keyframes fill{to{transform:scaleX(.85)}}
 @media (max-width:820px){.loader img{height:48px}.loader .bar{width:140px}}
 @media (prefers-reduced-motion:reduce){.loader img,.loader .bar i{animation:none}}
+
+/* ---- Safari-safe versions (no live SVG filters) ---- */
+.grain{position:absolute;inset:0;display:block;pointer-events:none;opacity:.45;background:url(../img/grain.png) 0 0/256px 256px repeat}
+/* nav pill: a plain outline that slides and stretches between links */
+.nav .goo{filter:none}
+.goo i{background:transparent;border:1.5px solid var(--ink);box-sizing:border-box;transition:left .36s cubic-bezier(.3,.8,.3,1),width .52s cubic-bezier(.3,.8,.3,1)}
+.goo .gb{display:none}
+.nav ul.gooing .pl.on{border-color:transparent}
+/* buttons: same two-speed fill, without the filter */
+.more .fx,.ic .fx{filter:none}
