@@ -151,3 +151,16 @@ html.loading .page,html.loading .page *{animation-play-state:paused!important}
 .nav ul.gooing .pl.on{border-color:transparent}
 /* buttons: same two-speed fill, without the filter */
 .more .fx,.ic .fx{filter:none}
+
+/* ---- v3 fixes ---- */
+.box video{display:block;width:100%;height:100%;object-fit:cover}
+/* menu: the links never draw their own outline, only the sliding pill does */
+.nav .pl,.nav .pl:hover,.nav .pl.on{border-color:transparent!important;transition:none!important}
+.goo i{left:12px!important;transform:translateX(var(--x,0));will-change:transform,width;transition:transform .36s cubic-bezier(.3,.8,.3,1),width .52s cubic-bezier(.3,.8,.3,1)}
+.nav .goo{transform:translateZ(0)}
+
+/* ---- v4: project page images fade in without moving, so they stay sharp ---- */
+@supports (animation-timeline:view()){@media (prefers-reduced-motion:no-preference){
+.pad{animation-name:inview-fade}
+}}
+@keyframes inview-fade{from{opacity:0}}

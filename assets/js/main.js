@@ -2,6 +2,17 @@
 (function () {
   var root = document.documentElement;
 
+  // km-v3: a new page always opens at the top (Back still returns to where you were)
+  try {
+    var nav = performance.getEntriesByType('navigation')[0];
+    if (nav && nav.type === 'navigate' && !location.hash) {
+      var moved = false;
+      ['wheel', 'touchstart', 'keydown'].forEach(function (e) { window.addEventListener(e, function () { moved = true; }, { once: true, passive: true }); });
+      var top = function () { if (!moved) window.scrollTo(0, 0); };
+      top(); window.addEventListener('load', top);
+    }
+  } catch (e) {}
+
   // Loading screen: shown on the first visit of a session, until the page has loaded
   function ready() {
     root.classList.add('ready');
@@ -30,6 +41,14 @@
         } else place(a);
       });
     });
+    // show the pill on the current page straight away
+    function rest() { if (active && !ul.matches(':hover')) place(active); }
+    if (active) {
+      ul.classList.add('still'); place(active); ul.classList.add('gooing'); shown = true;
+      requestAnimationFrame(function () { requestAnimationFrame(function () { ul.classList.remove('still'); }); });
+      window.addEventListener('load', rest);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(rest);
+    }
     ul.addEventListener('mouseleave', function () {
       if (active) place(active); else { ul.classList.remove('gooing'); shown = false; }
     });
