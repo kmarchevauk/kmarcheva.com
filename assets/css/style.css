@@ -164,3 +164,7 @@ html.loading .page,html.loading .page *{animation-play-state:paused!important}
 .pad{animation-name:inview-fade}
 }}
 @keyframes inview-fade{from{opacity:0}}
+
+/* ---- v5: on big screens the page stops growing at 1600px; backgrounds still fill the screen ---- */
+.page{--gut:max(64px,calc((100vw - 1600px) / 2 + 64px))}
+@media (max-width:820px){.page{--gut:16px}}
