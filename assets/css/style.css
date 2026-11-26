@@ -168,3 +168,6 @@ html.loading .page,html.loading .page *{animation-play-state:paused!important}
 /* ---- v5: on big screens the page stops growing at 1600px; backgrounds still fill the screen ---- */
 .page{--gut:max(64px,calc((100vw - 1600px) / 2 + 64px))}
 @media (max-width:820px){.page{--gut:16px}}
+
+/* ---- v6: loading logo fades in without blur (blur drew a box behind it in Safari) ---- */
+@keyframes lin{from{opacity:0;transform:translateY(8px)}}
